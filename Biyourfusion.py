@@ -8,7 +8,7 @@ st.write("Welcome to your personal health and wellness management app. Track you
 
 # Sidebar for navigation
 st.sidebar.title("Navigation")
-app_mode = st.sidebar.selectbox("Choose a section", ["Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard", "Set Goals", "Health Records"])
+app_mode = st.sidebar.selectbox("Choose a section", ["Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard", "Set Goals", "Health Records", "Terms of Service and Privacy Policy"])
 
 # Dummy data for demonstration
 data = {
@@ -109,6 +109,13 @@ elif app_mode == "Health Records":
         st.success("Health records saved successfully!")
         st.write("Conditions:", conditions)
         st.write("Allergies:", allergies)
+
+# Terms of Service and Privacy Policy
+elif app_mode == "Terms of Service and Privacy Policy":
+    st.subheader("Terms of Service")
+    st.write("By using this app, you agree to the following terms... [Add your terms of service text here].")
+    st.subheader("Privacy Policy")
+    st.write("Your privacy is important to us. We are committed to safeguarding any information you share. [Add privacy policy details here].")
 
 # Sidebar Date
 st.sidebar.write("### Current Date")
