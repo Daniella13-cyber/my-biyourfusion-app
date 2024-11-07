@@ -134,7 +134,7 @@ elif app_mode == "⚖️ Terms of Service and Privacy Policy":
 # Sidebar Date
 st.sidebar.write("### Current Date")
 st.sidebar.write(date.today())
-```
+
 
 ### Explanation of Icons
 - **"🏠 Home"**: Home page icon
