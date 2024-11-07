@@ -138,7 +138,7 @@ st.sidebar.write(date.today())
 ```
 
 ### Explanation of Icons
-- **🏠 Home**: Home page icon
+- **"🏠 Home"**: Home page icon
 - **📊 Log Health Metrics**: Metrics logging icon
 - **📅 Log Menstrual Cycle**: Calendar icon for cycle tracking
 - **🍎 Log Diet & Exercise**: Food and exercise icon
