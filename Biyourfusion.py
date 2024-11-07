@@ -1,5 +1,3 @@
-Certainly! Adding icons to the navigation menu can enhance the user experience by providing visual cues. Streamlit allows the use of emojis, which work well as quick and lightweight icons. Here’s how you can add icons to each menu item using emoji codes.
-
 ### Updated Code with Icons in Navigation Menu
 
 ```python
