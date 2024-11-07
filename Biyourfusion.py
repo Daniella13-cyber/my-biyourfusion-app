@@ -98,4 +98,78 @@ elif app_mode == "Log Health Metrics":
 # Example of a Metric Tile
 st.markdown("<div class='metric-tile'><i class='icon'>📈</i><br>Steps Walked Today</div>", unsafe_allow_html=True)
 
-# Additional Pages...
+import streamlit as st
+import pandas as pd
+from datetime import date
+
+# Apply custom CSS for colors, gradients, and layout styling
+st.markdown("""
+    <style>
+        /* Colors */
+        :root {
+            --white: #ffffffff;
+            --madder: #a41623ff;
+            --orange-pantone: #f85e00ff;
+            --olive: #918450ff;
+            --keppel: #60ab9aff;
+        }
+
+        /* Gradient Background */
+        .app-container {
+            background: linear-gradient(135deg, var(--madder), var(--orange-pantone), var(--olive), var(--keppel));
+            padding: 20px;
+            border-radius: 10px;
+            color: var(--white);
+        }
+
+        /* Sidebar styling */
+        .sidebar .sidebar-content {
+            background-color: var(--madder);
+            color: var(--white);
+        }
+
+        /* Tile/Card styling */
+        .metric-tile {
+            background: var(--orange-pantone);
+            padding: 20px;
+            border-radius: 10px;
+            color: var(--white);
+            text-align: center;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        /* Icon style */
+        .icon {
+            color: var(--keppel);
+            font-size: 40px;
+        }
+
+        /* Other styling for buttons, headers */
+        .stButton>button {
+            background-color: var(--olive);
+            color: var(--white);
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .stButton>button:hover {
+            background-color: var(--keppel);
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Set up the app title and description
+st.markdown("<div class='app-container'><h1>Digital Mobile Health App</h1><p>Welcome to your personal health and wellness management app. Track your health metrics, set goals, and monitor your progress.</p></div>", unsafe_allow_html=True)
+
+# Sidebar for navigation
+st.sidebar.title("Navigation")
+app_mode = st.sidebar.selectbox("Choose a section", ["Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard", "Set Goals", "Health Records", "Terms of Service and Privacy Policy"])
+
+# Initialize a DataFrame to store logged metrics
+data = {
+    "Date": [],
+    "Steps": [],
+    "Sleep (hrs)": [],
+    "Water Intake (oz
+
