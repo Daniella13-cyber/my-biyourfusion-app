@@ -145,6 +145,6 @@ st.sidebar.write(date.today())
 - **"📈 View Dashboard"**: Dashboard view icon
 - **"🎯 Set Goals"**: Target icon for goal setting
 - **"📝 Health Records"**: Notes icon for health records
-- **⚖️ "Terms of Service and Privacy Policy"**: Scales icon for legal information
+- **"⚖️ Terms of Service and Privacy Policy"**: Scales icon for legal information
 
 This will add a more visually appealing and organized look to the navigation. Each item is paired with a relevant icon for easy recognition.
