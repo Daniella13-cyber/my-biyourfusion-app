@@ -1,133 +1,101 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import pandas as pd
-from datetime import date, datetime, timedelta
+from datetime import date
 
-# CSS styling
+# Apply custom CSS for colors, gradients, and layout styling
 st.markdown("""
     <style>
-        .main {background-color: #f0f2f6;} /* Light gray background for main content */
-        .sidebar .sidebar-content {background-color: #e3f2fd;} /* Light blue background for sidebar */
-        .icon {
-            font-size: 2em; /* Icon size */
-            color: #2196F3; /* Icon color */
-            margin-right: 10px;
+        /* Colors */
+        :root {
+            --white: #ffffffff;
+            --madder: #a41623ff;
+            --orange-pantone: #f85e00ff;
+            --olive: #918450ff;
+            --keppel: #60ab9aff;
         }
-        .tile {
-            background-color: #90caf9; /* Light blue background for tiles */
-            border-radius: 10px;
+
+        /* Gradient Background */
+        .app-container {
+            background: linear-gradient(135deg, var(--madder), var(--orange-pantone), var(--olive), var(--keppel));
             padding: 20px;
-            margin: 10px 0;
-            color: #fff;
+            border-radius: 10px;
+            color: var(--white);
+        }
+
+        /* Sidebar styling */
+        .sidebar .sidebar-content {
+            background-color: var(--madder);
+            color: var(--white);
+        }
+
+        /* Tile/Card styling */
+        .metric-tile {
+            background: var(--orange-pantone);
+            padding: 20px;
+            border-radius: 10px;
+            color: var(--white);
             text-align: center;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        /* Icon style */
+        .icon {
+            color: var(--keppel);
+            font-size: 40px;
+        }
+
+        /* Other styling for buttons, headers */
+        .stButton>button {
+            background-color: var(--olive);
+            color: var(--white);
             font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .stButton>button:hover {
+            background-color: var(--keppel);
         }
     </style>
 """, unsafe_allow_html=True)
 
 # Set up the app title and description
-st.title("🌱 Digital Mobile Health App")
-st.write("Welcome to your personal health and wellness management app. Track your health metrics, set goals, and monitor your progress.")
+st.markdown("<div class='app-container'><h1>Digital Mobile Health App</h1><p>Welcome to your personal health and wellness management app. Track your health metrics, set goals, and monitor your progress.</p></div>", unsafe_allow_html=True)
 
-# Sidebar for navigation with icons
-st.sidebar.title("🌐 Navigation")
-app_mode = st.sidebar.selectbox("Choose a section", [
-    "Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard",
-    "Set Goals", "Health Records", "Terms of Service and Privacy Policy"
-])
+# Sidebar for navigation
+st.sidebar.title("Navigation")
+app_mode = st.sidebar.selectbox("Choose a section", ["Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard", "Set Goals", "Health Records", "Terms of Service and Privacy Policy"])
 
-# Date in Sidebar
-st.sidebar.write("### 📅 Current Date")
-st.sidebar.write(date.today())
+# Dummy data for demonstration
+data = {
+    "Date": [date.today()],
+    "Steps": [0],
+    "Sleep (hrs)": [0],
+    "Water Intake (oz)": [0],
+    "Calories Consumed": [0],
+    "Calories Burned": [0],
+    "Heart Rate (bpm)": [0]
+}
 
-# Home Page with tiles
+# Home Page
 if app_mode == "Home":
-    st.subheader("Welcome to your Health Dashboard")
-    st.write("Use this app to log daily health metrics and track your progress over time.")
-    
-    # Create a row of tiles for key metrics
-    st.markdown(f"""
-    <div class="tile">🚶 Steps Today: {0}</div>
-    <div class="tile">💧 Water Intake: {0} oz</div>
-    <div class="tile">💤 Sleep: {0} hrs</div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='app-container'><h2>Welcome to your Health Dashboard</h2><p>Use this app to log daily health metrics and track your progress over time.</p></div>", unsafe_allow_html=True)
 
-# Log Health Metrics Page with icons and styles
+# Log Health Metrics Page
 elif app_mode == "Log Health Metrics":
-    st.subheader("Log Daily Health Metrics 🩺")
-    
+    st.markdown("<div class='app-container'><h2>Log Daily Health Metrics</h2></div>", unsafe_allow_html=True)
     steps = st.number_input("Steps Walked Today", min_value=0, max_value=50000, step=100)
     sleep = st.number_input("Hours of Sleep", min_value=0.0, max_value=24.0, step=0.5)
     water_intake = st.number_input("Water Intake (oz)", min_value=0, max_value=300, step=1)
     
     if st.button("Save Entry"):
-        # Append to the data
+        data["Date"].append(date.today())
+        data["Steps"].append(steps)
+        data["Sleep (hrs)"].append(sleep)
+        data["Water Intake (oz)"].append(water_intake)
         st.success("Health metrics logged successfully!")
 
-# Log Menstrual Cycle Page
-elif app_mode == "Log Menstrual Cycle":
-    st.subheader("Log Menstrual Cycle 🌸")
-    cycle_start = st.date_input("Start Date")
-    cycle_end = st.date_input("End Date", min_value=cycle_start)
-    cycle_length = (cycle_end - cycle_start).days
-    st.write("Cycle Length:", cycle_length, "days")
-    if st.button("Save Cycle Data"):
-        st.success("Menstrual cycle data logged successfully!")
+# Example of a Metric Tile
+st.markdown("<div class='metric-tile'><i class='icon'>📈</i><br>Steps Walked Today</div>", unsafe_allow_html=True)
 
-# Log Diet & Exercise Page
-elif app_mode == "Log Diet & Exercise":
-    st.subheader("Log Diet & Exercise 🍎")
-    meals = st.text_area("Enter Meals & Calories (e.g., Breakfast: 300, Lunch: 500)")
-    total_calories = sum([int(line.split(": ")[1]) for line in meals.splitlines() if ": " in line])
-    st.write("Total Calories Consumed:", total_calories, "kcal")
-    
-    exercise_type = st.selectbox("Exercise Type", ["Running", "Cycling", "Yoga", "Weight Lifting", "Other"])
-    duration = st.slider("Duration (minutes)", 0, 180)
-    heart_rate = st.slider("Heart Rate (bpm)", 60, 200)
-    calories_burned = duration * (heart_rate / 10)
-    st.write("Calories Burned:", calories_burned, "kcal (estimated)")
-    
-    if st.button("Save Diet & Exercise Data"):
-        st.success("Diet and exercise data logged successfully!")
-
-# View Dashboard Page with chart
-elif app_mode == "View Dashboard":
-    st.subheader("Health Dashboard 📊")
-    st.write("View your health metrics over time.")
-    df = pd.DataFrame({
-        "Date": [date.today()],
-        "Steps": [0],
-        "Sleep (hrs)": [0],
-        "Water Intake (oz)": [0],
-        "Calories Consumed": [0],
-        "Calories Burned": [0],
-        "Heart Rate (bpm)": [0]
-    })
-    st.line_chart(df.set_index("Date"))
-
-# Set Goals Page
-elif app_mode == "Set Goals":
-    st.subheader("Set Health Goals 🎯")
-    goal_steps = st.number_input("Daily Steps Goal", min_value=0, max_value=50000, step=100, value=10000)
-    goal_sleep = st.number_input("Daily Sleep Goal (hours)", min_value=0.0, max_value=24.0, step=0.5, value=8.0)
-    goal_water = st.number_input("Daily Water Intake Goal (oz)", min_value=0, max_value=300, step=1, value=64)
-    
-    if st.button("Save Goals"):
-        st.success("Goals saved successfully!")
-        st.write(f"Your daily goals: {goal_steps} steps, {goal_sleep} hours of sleep, {goal_water} oz of water.")
-
-# Health Records Page
-elif app_mode == "Health Records":
-    st.subheader("Log Health Records 📋")
-    conditions = st.text_area("Existing Health Conditions")
-    allergies = st.text_area("Known Allergies")
-    if st.button("Save Health Records"):
-        st.success("Health records saved successfully!")
-
-# Terms of Service and Privacy Policy
-elif app_mode == "Terms of Service and Privacy Policy":
-    st.subheader("Terms of Service 📜")
-    st.write("By using this app, you agree to the following terms...")
-    st.subheader("Privacy Policy 🔒")
-    st.write("Your privacy is important to us. We are committed to safeguarding any information you share.")
-
+# Additional Pages...
