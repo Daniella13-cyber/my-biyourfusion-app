@@ -1,64 +1,8 @@
-import streamlit as st
-import pandas as pd
-from datetime import date
+Certainly! Adding icons to the navigation menu can enhance the user experience by providing visual cues. Streamlit allows the use of emojis, which work well as quick and lightweight icons. Here’s how you can add icons to each menu item using emoji codes.
 
-# Apply custom CSS for colors, gradients, and layout styling
-st.markdown("""
-    <style>
-        /* Colors */
-        :root {
-            --white: #ffffffff;
-            --madder: #a41623ff;
-            --orange-pantone: #f85e00ff;
-            --olive: #918450ff;
-            --keppel: #60ab9aff;
-        }
+### Updated Code with Icons in Navigation Menu
 
-        /* Gradient Background */
-        .app-container {
-            background: linear-gradient(135deg, var(--madder), var(--orange-pantone), var(--olive), var(--keppel));
-            padding: 20px;
-            border-radius: 10px;
-            color: var(--white);
-        }
-
-        /* Sidebar styling */
-        .sidebar .sidebar-content {
-            background-color: var(--madder);
-            color: var(--white);
-        }
-
-        /* Tile/Card styling */
-        .metric-tile {
-            background: var(--orange-pantone);
-            padding: 20px;
-            border-radius: 10px;
-            color: var(--white);
-            text-align: center;
-            font-size: 20px;
-            margin: 10px 0;
-        }
-
-        /* Icon style */
-        .icon {
-            color: var(--keppel);
-            font-size: 40px;
-        }
-
-        /* Other styling for buttons, headers */
-        .stButton>button {
-            background-color: var(--olive);
-            color: var(--white);
-            font-weight: bold;
-            border-radius: 8px;
-        }
-
-        .stButton>button:hover {
-            background-color: var(--keppel);
-        }
-    </style>
-""", unsafe_allow_html=True)
-
+```python
 import streamlit as st
 import pandas as pd
 from datetime import date, datetime, timedelta
@@ -67,9 +11,21 @@ from datetime import date, datetime, timedelta
 st.title("Digital Mobile Health App")
 st.write("Welcome to your personal health and wellness management app. Track your health metrics, set goals, and monitor your progress.")
 
-# Sidebar for navigation
+# Sidebar for navigation with icons
 st.sidebar.title("Navigation")
-app_mode = st.sidebar.selectbox("Choose a section", ["Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard", "Set Goals", "Health Records", "Terms of Service and Privacy Policy"])
+app_mode = st.sidebar.selectbox(
+    "Choose a section", 
+    [
+        "🏠 Home", 
+        "📊 Log Health Metrics", 
+        "📅 Log Menstrual Cycle", 
+        "🍎 Log Diet & Exercise", 
+        "📈 View Dashboard", 
+        "🎯 Set Goals", 
+        "📝 Health Records", 
+        "⚖️ Terms of Service and Privacy Policy"
+    ]
+)
 
 # Dummy data for demonstration
 data = {
@@ -83,12 +39,12 @@ data = {
 }
 
 # Home Page
-if app_mode == "Home":
+if app_mode == "🏠 Home":
     st.subheader("Welcome to your Health Dashboard")
     st.write("Use this app to log daily health metrics and track your progress over time.")
 
 # Log Health Metrics Page
-elif app_mode == "Log Health Metrics":
+elif app_mode == "📊 Log Health Metrics":
     st.subheader("Log Daily Health Metrics")
     
     steps = st.number_input("Steps Walked Today", min_value=0, max_value=50000, step=100)
@@ -104,7 +60,7 @@ elif app_mode == "Log Health Metrics":
         st.success("Health metrics logged successfully!")
 
 # Log Menstrual Cycle Page
-elif app_mode == "Log Menstrual Cycle":
+elif app_mode == "📅 Log Menstrual Cycle":
     st.subheader("Log Menstrual Cycle")
     cycle_start = st.date_input("Start Date")
     cycle_end = st.date_input("End Date", min_value=cycle_start)
@@ -114,7 +70,7 @@ elif app_mode == "Log Menstrual Cycle":
         st.success("Menstrual cycle data logged successfully!")
 
 # Log Diet & Exercise Page
-elif app_mode == "Log Diet & Exercise":
+elif app_mode == "🍎 Log Diet & Exercise":
     st.subheader("Log Diet & Exercise")
     
     # Diet & Calorie Counting
@@ -138,7 +94,7 @@ elif app_mode == "Log Diet & Exercise":
         st.success("Diet and exercise data logged successfully!")
 
 # View Dashboard Page
-elif app_mode == "View Dashboard":
+elif app_mode == "📈 View Dashboard":
     st.subheader("Health Dashboard")
     st.write("View your health metrics over time.")
     
@@ -147,7 +103,7 @@ elif app_mode == "View Dashboard":
     st.write(df)
 
 # Set Goals Page
-elif app_mode == "Set Goals":
+elif app_mode == "🎯 Set Goals":
     st.subheader("Set Health Goals")
     
     st.write("Define your personal health goals.")
@@ -160,7 +116,7 @@ elif app_mode == "Set Goals":
         st.write(f"Your daily goals: {goal_steps} steps, {goal_sleep} hours of sleep, {goal_water} oz of water.")
 
 # Health Records Page
-elif app_mode == "Health Records":
+elif app_mode == "📝 Health Records":
     st.subheader("Log Health Records")
     
     # Health Conditions and Allergies
@@ -172,7 +128,7 @@ elif app_mode == "Health Records":
         st.write("Allergies:", allergies)
 
 # Terms of Service and Privacy Policy
-elif app_mode == "Terms of Service and Privacy Policy":
+elif app_mode == "⚖️ Terms of Service and Privacy Policy":
     st.subheader("Terms of Service")
     st.write("By using this app, you agree to the following terms... [Add your terms of service text here].")
     st.subheader("Privacy Policy")
@@ -181,4 +137,16 @@ elif app_mode == "Terms of Service and Privacy Policy":
 # Sidebar Date
 st.sidebar.write("### Current Date")
 st.sidebar.write(date.today())
+```
 
+### Explanation of Icons
+- **🏠 Home**: Home page icon
+- **📊 Log Health Metrics**: Metrics logging icon
+- **📅 Log Menstrual Cycle**: Calendar icon for cycle tracking
+- **🍎 Log Diet & Exercise**: Food and exercise icon
+- **📈 View Dashboard**: Dashboard view icon
+- **🎯 Set Goals**: Target icon for goal setting
+- **📝 Health Records**: Notes icon for health records
+- **⚖️ Terms of Service and Privacy Policy**: Scales icon for legal information
+
+This will add a more visually appealing and organized look to the navigation. Each item is paired with a relevant icon for easy recognition.
