@@ -65,15 +65,93 @@ elif app_mode == "Log Health Metrics":
     if st.button("Save Entry"):
         st.success("Health metrics logged successfully!")
 
-# Log Menstrual Cycle Page
+# Log Menstrual Cycle Page with enhanced features and tips
 elif app_mode == "Log Menstrual Cycle":
     st.subheader("Log Menstrual Cycle 🌸")
+
+    # Cycle tracking inputs
+    st.write("### Menstrual Cycle Details")
     cycle_start = st.date_input("Start Date")
     cycle_end = st.date_input("End Date", min_value=cycle_start)
     cycle_length = (cycle_end - cycle_start).days
-    st.write("Cycle Length:", cycle_length, "days")
+    st.write(f"Cycle Length: {cycle_length} days")
+
+    # Ovulation tracking
+    st.write("### Ovulation Tracking")
+    ovulation_date = st.date_input("Ovulation Date (estimated)", min_value=cycle_start, max_value=cycle_end)
+    st.write(f"Estimated Ovulation Date: {ovulation_date}")
+
+    # Contraceptive use tracking
+    st.write("### Contraceptive Use")
+    contraceptive_type = st.selectbox("Select Contraceptive Method", [
+        "None", "Birth Control Pill", "IUD", "Condom", "Natural Rhythm Method", "Other"
+    ])
+    contraceptive_notes = st.text_area("Additional Notes on Contraceptive Use (if any)")
+
+    # Conception and sexual activity tracking
+    st.write("### Conception and Sexual Activity")
+    trying_to_conceive = st.radio("Are you trying to conceive?", ["Yes", "No"])
+    had_unprotected_sex = st.radio("Did you have unprotected sex this cycle?", ["Yes", "No"])
+    unprotected_sex_dates = st.text_area("Dates of Unprotected Sex (if applicable, format: YYYY-MM-DD)")
+
+    # Save button
     if st.button("Save Cycle Data"):
         st.success("Menstrual cycle data logged successfully!")
+        st.write("### Summary of Recorded Data")
+        st.write(f"- Cycle Start Date: {cycle_start}")
+        st.write(f"- Cycle End Date: {cycle_end}")
+        st.write(f"- Cycle Length: {cycle_length} days")
+        st.write(f"- Estimated Ovulation Date: {ovulation_date}")
+        st.write(f"- Contraceptive Method: {contraceptive_type}")
+        st.write(f"- Contraceptive Notes: {contraceptive_notes}")
+        st.write(f"- Trying to Conceive: {trying_to_conceive}")
+        st.write(f"- Unprotected Sex: {had_unprotected_sex}")
+        if had_unprotected_sex == "Yes" and unprotected_sex_dates:
+            st.write(f"- Dates of Unprotected Sex: {unprotected_sex_dates}")
+
+    # Menstrual phase tips
+    st.write("### Tips for Each Phase of the Menstrual Cycle")
+    phase = st.radio("Select a Cycle Phase to Learn More", [
+        "Menstrual Phase", "Follicular Phase", "Ovulation Phase", "Luteal Phase"
+    ])
+
+    if phase == "Menstrual Phase":
+        st.write("""
+        **Tips during your period:**
+        - **Foods to Indulge In:** Iron-rich foods (spinach, lentils), magnesium-rich foods (dark chocolate, nuts).
+        - **Foods to Avoid:** Processed foods, caffeine, and alcohol.
+        - **Exercises to Try:** Light yoga, walking, or stretching.
+        - **Exercises to Avoid:** High-intensity workouts if energy levels are low.
+        - **Other Tips:** Use heating pads for cramps and prioritize hydration.
+        """)
+
+    elif phase == "Follicular Phase":
+        st.write("""
+        **Tips during the follicular phase:**
+        - **Foods to Indulge In:** Protein-rich foods (eggs, chicken, fish), healthy fats (avocado, nuts).
+        - **Foods to Avoid:** High-sugar snacks and refined carbs.
+        - **Exercises to Try:** Cardio, weight training, or high-energy activities.
+        - **Other Tips:** This is the best time to focus on productivity and creative projects.
+        """)
+
+    elif phase == "Ovulation Phase":
+        st.write("""
+        **Tips during ovulation:**
+        - **Foods to Indulge In:** Antioxidant-rich foods (berries, leafy greens), hydration-focused foods (watermelon, cucumber).
+        - **Foods to Avoid:** Inflammatory foods (fried or overly salty foods).
+        - **Exercises to Try:** High-intensity interval training (HIIT), running, or dancing.
+        - **Other Tips:** Socialize and take advantage of peak energy and confidence.
+        """)
+
+    elif phase == "Luteal Phase":
+        st.write("""
+        **Tips during the luteal phase:**
+        - **Foods to Indulge In:** Complex carbs (sweet potatoes, quinoa), omega-3-rich foods (salmon, flaxseed).
+        - **Foods to Avoid:** Excess sodium and caffeine to reduce bloating.
+        - **Exercises to Try:** Pilates, moderate-intensity workouts, or swimming.
+        - **Other Tips:** Manage mood changes by practicing mindfulness or journaling.
+        """)
+
 
 # Log Diet & Exercise Page
 elif app_mode == "Log Diet & Exercise":
