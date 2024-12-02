@@ -46,6 +46,25 @@ def show_intro():
 
         BiyouFusion makes it easier to manage your health and fitness in one place, offering **convenience, efficiency**, and **easy access** to important health information.
     """)
+
+
+# Function to display the introduction
+def show_intro():
+    st.title("WhyBiyourFusion 🌟")
+    st.markdown("""
+        **BiyouFusion** is an all-in-one health and wellness app designed for maximum convenience and efficiency. 
+        Unlike competitors like **MyFitnessPal**, **OurApp**, and **Apple Health**, BiyouFusion consolidates multiple essential features 
+        into one platform, helping you track your health goals, fitness, menstrual cycles, and medical records effortlessly.
+
+        ### Key Features:
+        - **Health Goals**: Track weight, calorie intake, and nutrition.
+        - **Menstrual Cycle**: Log phases, ovulation, contraceptives, and receive tailored tips.
+        - **Fitness & Exercise**: Log workouts, monitor activity trends, access workout videos, and create personalized plans.
+        - **Health Records**: Upload, update, and share health and immunization records with healthcare providers anytime.
+
+        BiyouFusion makes it easier to manage your health and fitness in one place, offering **convenience, efficiency**, and **easy access** to important health information.
+    """)
+
 # Sidebar for navigation with icons
 st.sidebar.title("🌐 Navigation")
 app_mode = st.sidebar.selectbox("Choose a section", [
