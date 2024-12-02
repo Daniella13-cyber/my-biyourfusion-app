@@ -1,3 +1,4 @@
+# Import necessary libraries
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
@@ -32,8 +33,9 @@ st.write("Welcome to your personal health and wellness management app. Track you
 # Sidebar for navigation with icons
 st.sidebar.title("🌐 Navigation")
 app_mode = st.sidebar.selectbox("Choose a section", [
-    "Home", " Why Biyoufusion", " How it works", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard",
-    "Set Goals", "Health Records", "Terms of Service and Privacy Policy"
+    "Home", " Why Biyoufusion", " How it works", "Log Health Metrics", "Log Menstrual Cycle", 
+    "Log Diet & Exercise", "View Dashboard", "Set Goals", "Health Records", "Immunization Records", 
+    "Terms of Service and Privacy Policy"
 ])
 
 # Date in Sidebar
@@ -61,7 +63,6 @@ elif app_mode == "Log Health Metrics":
     water_intake = st.number_input("Water Intake (oz)", min_value=0, max_value=300, step=1)
     
     if st.button("Save Entry"):
-        # Append to the data
         st.success("Health metrics logged successfully!")
 
 # Log Menstrual Cycle Page
@@ -124,12 +125,30 @@ elif app_mode == "Health Records":
     if st.button("Save Health Records"):
         st.success("Health records saved successfully!")
 
-# Terms of Service and Privacy Policy
-elif app_mode == "Terms of Service and Privacy Policy":
-    st.subheader("Terms of Service 📜")
-    st.write("By using this app, you agree to the following terms...")
-    st.subheader("Privacy Policy 🔒")
-    st.write("Your privacy is important to us. We are committed to safeguarding any information you share.")
+# Immunization Records Page
+elif app_mode == "Immunization Records":
+    st.subheader("Store and View Immunization Records 💉")
+    st.write("Keep a record of your immunizations for easy reference. You can log new immunizations and view your existing records.")
+
+    # Input fields for logging immunizations
+    st.write("### Add a New Immunization Record")
+    vaccine_name = st.text_input("Vaccine Name", placeholder="e.g., Influenza, COVID-19")
+    date_received = st.date_input("Date Received")
+    provider_name = st.text_input("Healthcare Provider", placeholder="e.g., Clinic or Doctor's Name")
+    additional_notes = st.text_area("Additional Notes (Optional)", placeholder="e.g., Any side effects or remarks")
+
+    if st.button("Save Immunization Record"):
+        st.success(f"Immunization record for {vaccine_name} saved successfully!")
+
+    # Example of displaying stored records (you would replace this with actual data retrieval logic)
+    st.write("### Your Immunization Records")
+    sample_records = pd.DataFrame({
+        "Vaccine Name": ["Influenza", "COVID-19 Booster"],
+        "Date Received": ["2023-10-10", "2024-01-15"],
+        "Healthcare Provider": ["City Health Clinic", "County Hospital"],
+        "Notes": ["No side effects", "Mild fever after injection"]
+    })
+    st.table(sample_records)
 
 # Terms of Service and Privacy Policy
 elif app_mode == "Terms of Service and Privacy Policy":
@@ -149,5 +168,3 @@ elif app_mode == "Terms of Service and Privacy Policy":
     
     For more details, please review our comprehensive [Privacy Policy](#).
     """)
-
-
