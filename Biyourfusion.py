@@ -33,7 +33,7 @@ st.write("Welcome to your personal health and wellness management app. Track you
 # Sidebar for navigation with icons
 st.sidebar.title("🌐 Navigation")
 app_mode = st.sidebar.selectbox("Choose a section", [
-    "Home", " Why Biyoufusion", " How it works", "Log Health Metrics", "Log Menstrual Cycle", 
+    "Home", " Why Biyoufusion", "Log Health Metrics", "Log Menstrual Cycle", 
     "Fitness & Exercise", "View Dashboard", "Set Goals", "Health Records", "Immunization Records", 
     "Terms of Service and Privacy Policy"
 ])
