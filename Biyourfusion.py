@@ -106,16 +106,49 @@ elif app_mode == "View Dashboard":
     })
     st.line_chart(df.set_index("Date"))
 
-# Set Goals Page
-elif app_mode == "Set Goals":
+# Set Goals Page with additional features
+if app_mode == "Set Goals":
     st.subheader("Set Health Goals 🎯")
-    goal_steps = st.number_input("Daily Steps Goal", min_value=0, max_value=50000, step=100, value=10000)
-    goal_sleep = st.number_input("Daily Sleep Goal (hours)", min_value=0.0, max_value=24.0, step=0.5, value=8.0)
-    goal_water = st.number_input("Daily Water Intake Goal (oz)", min_value=0, max_value=300, step=1, value=64)
+
+    # Input for weight goals
+    st.write("### Weight Goals")
+    current_weight = st.number_input("Current Weight (lbs)", min_value=50, max_value=500, step=1)
+    ideal_weight = st.number_input("Ideal Weight (lbs)", min_value=50, max_value=500, step=1)
+    height = st.number_input("Height (inches)", min_value=36, max_value=96, step=1)
+
+    weight_goal = st.selectbox("Do you want to gain or lose weight?", ["Maintain", "Lose", "Gain"])
     
+    # Input for food tracking
+    st.write("### Food Intake Goals")
+    calorie_goal = st.number_input("Daily Calorie Goal (kcal)", min_value=500, max_value=5000, step=50)
+
+    st.write("Track your macronutrients:")
+    carb_goal = st.number_input("Carbohydrates (grams/day)", min_value=0, max_value=500, step=1)
+    protein_goal = st.number_input("Protein (grams/day)", min_value=0, max_value=300, step=1)
+    fat_goal = st.number_input("Fat (grams/day)", min_value=0, max_value=200, step=1)
+    sugar_goal = st.number_input("Sugar (grams/day)", min_value=0, max_value=200, step=1)
+
+    # Input for food and brands
+    st.write("### Track Your Meals")
+    meal = st.text_input("Enter Food Item", placeholder="e.g., Chicken Breast, Banana")
+    calories = st.number_input("Calories (kcal)", min_value=0, max_value=2000, step=1)
+    carbs = st.number_input("Carbohydrates (g)", min_value=0, max_value=500, step=1)
+    protein = st.number_input("Protein (g)", min_value=0, max_value=200, step=1)
+    fat = st.number_input("Fat (g)", min_value=0, max_value=100, step=1)
+    sugar = st.number_input("Sugar (g)", min_value=0, max_value=100, step=1)
+
+    if st.button("Add Meal"):
+        st.success(f"Added {meal} with {calories} kcal, {carbs}g carbs, {protein}g protein, {fat}g fat, and {sugar}g sugar.")
+
+    # Save Goals
     if st.button("Save Goals"):
-        st.success("Goals saved successfully!")
-        st.write(f"Your daily goals: {goal_steps} steps, {goal_sleep} hours of sleep, {goal_water} oz of water.")
+        st.success("Your health goals have been saved successfully!")
+        st.write(f"### Summary of Goals:")
+        st.write(f"- Weight Goal: {weight_goal} (Current: {current_weight} lbs, Ideal: {ideal_weight} lbs)")
+        st.write(f"- Height: {height} inches")
+        st.write(f"- Daily Calorie Goal: {calorie_goal} kcal")
+        st.write(f"- Macronutrient Goals: {carb_goal}g carbs, {protein_goal}g protein, {fat_goal}g fat, {sugar_goal}g sugar")
+
 
 # Health Records Page
 elif app_mode == "Health Records":
