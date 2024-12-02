@@ -131,3 +131,23 @@ elif app_mode == "Terms of Service and Privacy Policy":
     st.subheader("Privacy Policy 🔒")
     st.write("Your privacy is important to us. We are committed to safeguarding any information you share.")
 
+# Terms of Service and Privacy Policy
+elif app_mode == "Terms of Service and Privacy Policy":
+    st.subheader("Terms of Service 📜")
+    st.write("""
+    By using this app, you agree to abide by the terms and conditions outlined below. These terms govern your use of the application and the services provided.
+    """)
+
+    st.subheader("Privacy Policy 🔒")
+    st.write("""
+    **Your privacy matters to us.**
+    
+    We are committed to protecting your personal information and ensuring that it is handled securely. Here’s how we safeguard your data:
+    - **Data Transparency:** You own your data, and we provide clear explanations about how it is used.
+    - **Security Measures:** Your information is stored securely and encrypted to prevent unauthorized access.
+    - **No Unauthorized Sharing:** We do not sell or share your data with third parties without your consent.
+    
+    For more details, please review our comprehensive [Privacy Policy](#).
+    """)
+
+
