@@ -153,12 +153,9 @@ elif app_mode == "Log Menstrual Cycle":
         """)
 
 
-# Log Diet & Exercise Page
-elif app_mode == "Log Diet & Exercise":
-    st.subheader("Log Diet & Exercise 🍎")
-    meals = st.text_area("Enter Meals & Calories (e.g., Breakfast: 300, Lunch: 500)")
-    total_calories = sum([int(line.split(": ")[1]) for line in meals.splitlines() if ": " in line])
-    st.write("Total Calories Consumed:", total_calories, "kcal")
+# Log Exercise Page
+elif app_mode == "Exercise":
+    st.subheader(" Exercise 🍎")
     
     exercise_type = st.selectbox("Exercise Type", ["Running", "Cycling", "Yoga", "Weight Lifting", "Other"])
     duration = st.slider("Duration (minutes)", 0, 180)
