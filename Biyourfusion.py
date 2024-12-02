@@ -26,13 +26,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Set up the app title and description
-st.title("🌱 Digital Mobile Health App")
-st.write("Welcome to your personal health and wellness management app. Track your health metrics, set goals, and monitor your progress.")
+st.title("🌱 BiYourFusion Mobile Health App")
+st.write("Welcome to your personal health and wellness management app. Track your daily health insights, set goals, monitor your progress, and store your health records.")
 
 # Sidebar for navigation with icons
 st.sidebar.title("🌐 Navigation")
 app_mode = st.sidebar.selectbox("Choose a section", [
-    "Home", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard",
+    "Home", " Why Biyoufusion", " How it works", "Log Health Metrics", "Log Menstrual Cycle", "Log Diet & Exercise", "View Dashboard",
     "Set Goals", "Health Records", "Terms of Service and Privacy Policy"
 ])
 
